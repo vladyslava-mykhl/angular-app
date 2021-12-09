@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {PhotosComponent} from "./posts/photos/photos/photos.component";
+import {PostsComponent} from "./posts/posts/posts/posts.component";
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./posts/photos/photos.module').then(m => m.PhotosModule)
+    loadChildren: () => import('./posts/posts/posts.module').then(m => m.PostsModule)
   }
 ];
 

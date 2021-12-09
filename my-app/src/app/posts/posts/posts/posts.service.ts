@@ -4,11 +4,11 @@ import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class PhotosService {
+export class PostsService {
 
   constructor(private http:HttpClient) { }
 
-  getPhotos() {
+  getPosts() {
     return this.http.get('https://jsonplaceholder.typicode.com/posts');
   }
 }
