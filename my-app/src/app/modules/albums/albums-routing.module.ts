@@ -5,7 +5,7 @@ import {AlbumsComponent} from "./albums/albums.component";
 
 const routes: Routes = [
   {
-    path: 'albums',
+    path: '',
     component: AlbumsComponent
   }
 ];

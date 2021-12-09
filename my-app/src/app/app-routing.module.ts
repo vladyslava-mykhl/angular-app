@@ -3,17 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'posts',
     loadChildren: () => import('./modules/posts/posts.module').then(m => m.PostsModule)
   },
   {
-    path: '',
+    path: 'albums',
     loadChildren: () => import('./modules/albums/albums.module').then(m => m.AlbumsModule)
   },
-  {
-    path: 'post/:id',
-    loadChildren: () => import('../app/shared/shared.module').then(m => m.SharedModule)
-  }
+  // {
+  //   path: 'post/:id',
+  //   loadChildren: () => import('../app/shared/shared.module').then(m => m.SharedModule)
+  // }
 ];
 
 @NgModule({
