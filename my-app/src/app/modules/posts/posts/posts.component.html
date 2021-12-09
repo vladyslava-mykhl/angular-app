@@ -1,0 +1,7 @@
+<div class="container">
+    <div *ngFor="let post of postsList" class="post" (click)="post.id">
+      <p class="userId">{{post?.userId}}</p>
+      <p class="postTitle">{{post?.title}}</p>
+      <p class="postBody">{{post?.body}}</p>
+    </div>
+</div>
