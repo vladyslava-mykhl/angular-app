@@ -1,7 +1,7 @@
 <div class="container">
-    <div *ngFor="let post of postsList" class="post" (click)="post.id">
-      <p class="userId">{{post?.userId}}</p>
+  <div *ngFor="let post of postsList" class="post" (click)="post.id">
+    <a href="http://localhost:4200/posts/post/{{post?.id}}">
       <p class="postTitle">{{post?.title}}</p>
-      <p class="postBody">{{post?.body}}</p>
+    </a>
     </div>
 </div>

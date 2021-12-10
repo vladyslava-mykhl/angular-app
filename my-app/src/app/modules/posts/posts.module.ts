@@ -7,11 +7,13 @@ import { PostsService } from "./components/posts/posts.service";
 import { SharedModule } from "../../shared/shared.module";
 import {CommentsComponent} from "./components/comments/comments.component";
 import {CommentsService} from "./components/comments/comments.service";
+import {PostService} from "./components/post/post.service";
 
 @NgModule({
   declarations: [
     PostsComponent,
-    CommentsComponent
+    CommentsComponent,
+    PostsComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import {CommentsService} from "./components/comments/comments.service";
   ],
   providers: [
     PostsService,
-    CommentsService
+    CommentsService,
+    PostService
   ]
 })
 export class PostsModule { }

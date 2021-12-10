@@ -7,6 +7,7 @@ import {UsersService} from "./users.service";
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
+
 export class UsersComponent implements OnInit {
   usersList: User [] = []
 

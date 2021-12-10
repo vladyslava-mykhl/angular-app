@@ -23,7 +23,6 @@ export class PhotosComponent implements OnInit {
           thumbnailUrl: item.thumbnailUrl
         }
       })
-      console.log(this.photoList)
     })
   }
 }
