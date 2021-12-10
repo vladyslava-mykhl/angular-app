@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PostsService} from "../posts.service";
-import {Post} from "../../../interfaces/post.interface";
+import {PostsService} from "./posts.service";
+import {Post} from "../../../../interfaces/post.interface";
 
 @Component({
   selector: 'app-posts',
@@ -14,7 +14,6 @@ export class PostsComponent implements OnInit {
   constructor(private PostsService: PostsService) { }
 
   ngOnInit(): void {
-
     this.PostsService.getPosts().subscribe((res) => {
      this.postsList = Object.values(res).map((item) => {
         return {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AlbumsService } from "../albums.service";
-import { Albums } from "../../../interfaces/albums.interface";
+import { AlbumsService } from './albums.service';
+import { Album } from "../../../../interfaces/albums.interface";
 
 @Component({
   selector: 'app-albums',
@@ -8,7 +8,7 @@ import { Albums } from "../../../interfaces/albums.interface";
   styleUrls: ['./albums.component.scss']
 })
 export class AlbumsComponent implements OnInit {
- albumList: Albums[] = []
+ albumList: Album[] = []
 
   constructor(private AlbumsService: AlbumsService) { }
 

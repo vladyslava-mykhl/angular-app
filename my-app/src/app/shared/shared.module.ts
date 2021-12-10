@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostComponent } from './post/post.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 
 @NgModule({
   declarations: [
-    PostComponent
+    UsersComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    PostComponent
+    UsersComponent
   ]
 })
 export class SharedModule { }

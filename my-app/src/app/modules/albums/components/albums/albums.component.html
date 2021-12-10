@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngFor="let album of albumList" class="album" (click)="album.id">
+  <div *ngFor="let album of albumList" class="album">
     <p class="userId">{{album?.userId}}</p>
     <p class="albumTitle">{{album?.title}}</p>
   </div>

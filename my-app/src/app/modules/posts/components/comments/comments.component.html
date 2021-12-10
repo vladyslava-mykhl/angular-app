@@ -1,0 +1,7 @@
+<div class="container">
+  <div *ngFor="let comment of commentList" class="comment">
+    <p class="commentName">{{comment?.name}}</p>
+    <p class="commentEmail">{{comment?.email}}</p>
+    <p class="commentBody">{{comment?.body}}</p>
+  </div>
+</div>
