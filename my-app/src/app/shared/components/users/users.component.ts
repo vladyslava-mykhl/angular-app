@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../../../interfaces/users.interface";
+import { Component } from '@angular/core';
+import {User} from "../../../interfaces/user.interface";
 import {UsersService} from "./users.service";
 
 @Component({
@@ -8,25 +8,16 @@ import {UsersService} from "./users.service";
   styleUrls: ['./users.component.scss']
 })
 
-export class UsersComponent implements OnInit {
+export class UsersComponent {
   usersList: User [] = [];
 
  constructor(private UsersService:UsersService) { }
 
-  ngOnInit(): void {
+  onGetUsers = () => {
     this.UsersService.getUsers().subscribe((res) => {
-      this.usersList = Object.values(res).map((item) => {
-        return {
-          id: item.id,
-          name: item.name,
-          username: item.username,
-          email: item.email,
-          address: item.address,
-          website: item.website,
-          phone: item.phone,
-          company: item.company
-        };
-      });
+      this.usersList = [...res];
     });
+    return this.usersList;
   };
 };
+

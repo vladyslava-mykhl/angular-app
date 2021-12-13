@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumsService } from './albums.service';
-import { Album } from "../../../../interfaces/albums.interface";
+import { Album } from "../../../../interfaces/album.interface";
+import { Photo } from '../../../../interfaces/photo.interface';
+import { PhotosService } from  '../photos/photos.service';
+import {UsersService} from '../../../../shared/components/users/users.service';
+import {User} from "../../../../interfaces/user.interface";
 
 @Component({
   selector: 'app-albums',
@@ -8,20 +12,31 @@ import { Album } from "../../../../interfaces/albums.interface";
   styleUrls: ['./albums.component.scss']
 })
 export class AlbumsComponent implements OnInit {
- albumList: Album[] = []
+ albumList?: Album[] = [];
+ photoList?: Photo[] = [];
+ usersList: User [] = [];
+ userId?: number;
 
-  constructor(private AlbumsService: AlbumsService) { }
+  constructor(private AlbumsService: AlbumsService, private PhotosService: PhotosService, private UsersService: UsersService) { }
 
-  ngOnInit(): void {
+  openAlbum(id:number) {
+    window.location.href = `http://localhost:4200/albums/album/${id}`;
+  };
+  onChange(event:any){
+    this.userId = event.value;
+    this.onGetAlbums();
+  };
 
-    this.AlbumsService.getAlbums().subscribe((res) => {
-      this.albumList = Object.values(res).map((item) => {
-        return {
-          id: item.id,
-          title: item.title,
-          userId: item.userId
-        }
-      })
+  onGetAlbums = () => {
+    this.AlbumsService.getAlbums(this.userId).subscribe((res) => {
+      this.albumList = [...res];
     });
   };
-}
+
+  ngOnInit(): void {
+    this.onGetAlbums();
+    this.UsersService.getUsers().subscribe((res) => {
+      this.usersList = [...res];
+    });
+  };
+};

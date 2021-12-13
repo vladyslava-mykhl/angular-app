@@ -1,4 +1,4 @@
-.container {
+.container, .albums {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -10,6 +10,7 @@
     margin: 15px;
     padding: 20px;
     transition: all 500ms;
+    cursor: pointer;
   }
   .album:hover {
     transform: scale(1.03);

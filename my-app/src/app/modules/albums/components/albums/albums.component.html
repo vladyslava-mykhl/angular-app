@@ -1,6 +1,17 @@
 <div class="container">
-  <div *ngFor="let album of albumList" class="album">
-    <p class="userId">{{album?.userId}}</p>
-    <p class="albumTitle">{{album?.title}}</p>
+  <div class="users">
+    <mat-form-field appearance="fill">
+      <mat-label>Select user</mat-label>
+      <mat-select (selectionChange)="onChange($event)" >
+        <mat-option>All users</mat-option>
+        <mat-option *ngFor="let state of usersList" [value]="state?.id">{{state?.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="albums">
+    <div class="album" *ngFor="let album of albumList"  (click)="album.id ? openAlbum(album.id) : null">
+      <p class="albumTitle">{{album?.title}}</p>
+  <!--    <img [src]="photo?.thumbnailUrl" class="albumThumbnail"/>-->
+    </div>
   </div>
 </div>

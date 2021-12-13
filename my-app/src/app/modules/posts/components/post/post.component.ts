@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from "../../../../interfaces/post.interface";
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {PostService} from './post.service';
 import {UserService} from '../../../../shared/components/user/user.service';
 import {CommentsService} from "../comments/comments.service";
-import {Comment} from "../../../../interfaces/comments.interface";
+import {Comment} from "../../../../interfaces/comment.interface";
 
 @Component({
   selector: 'app-post',
@@ -24,7 +24,7 @@ export class PostComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.postId = params['id'];
       this.PostService.getPostById(this.postId).subscribe((res) => {
-        this.post = {...res}
+        this.post = {...res};
         this.UserService.getUserById(this.post?.userId).subscribe((res) => {
           this.authorName = Object.assign(res).name;
         });

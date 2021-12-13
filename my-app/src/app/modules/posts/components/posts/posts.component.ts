@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PostsService} from "./posts.service";
 import {UsersService} from '../../../../shared/components/users/users.service';
 import {Post} from "../../../../interfaces/post.interface";
-import {User} from "../../../../interfaces/users.interface";
+import {User} from "../../../../interfaces/user.interface";
 
 @Component({
   selector: 'app-posts',
@@ -26,31 +26,13 @@ export class PostsComponent implements OnInit {
   };
   onGetPosts = () => {
     this.PostsService.getPosts(this.userId).subscribe((res) => {
-      this.postsList = Object.values(res).map((item) => {
-        return {
-          id: item.id,
-          title: item.title,
-          body: item.body,
-          userId: item.userId
-        };
-      });
+      this.postsList = [...res];
     });
   };
   ngOnInit(): void {
     this.onGetPosts();
     this.UsersService.getUsers().subscribe((res) => {
-      this.usersList = Object.values(res).map((item) => {
-        return {
-          id: item.id,
-          name: item.name,
-          username: item.username,
-          email: item.email,
-          address: item.address,
-          website: item.website,
-          phone: item.phone,
-          company: item.company
-        };
-      });
+      this.usersList = [...res];
     });
   };
 };
