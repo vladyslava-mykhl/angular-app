@@ -9,12 +9,11 @@ import {UsersService} from "./users.service";
 })
 
 export class UsersComponent implements OnInit {
-  usersList: User [] = []
+  usersList: User [] = [];
 
-  constructor(private UsersService:UsersService) { }
+ constructor(private UsersService:UsersService) { }
 
   ngOnInit(): void {
-
     this.UsersService.getUsers().subscribe((res) => {
       this.usersList = Object.values(res).map((item) => {
         return {
@@ -26,9 +25,8 @@ export class UsersComponent implements OnInit {
           website: item.website,
           phone: item.phone,
           company: item.company
-        }
-      })
-      console.log(this.usersList)
+        };
+      });
     });
   };
-}
+};

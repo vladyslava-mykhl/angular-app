@@ -4,11 +4,11 @@ import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class CommentsService {
+export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  getCommentsById(id: number | undefined) {
-    return this.http.get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`);
+  getUserById(id: number | undefined) {
+    return this.http.get(`https://jsonplaceholder.typicode.com/users/${id}`);
   }
 }

@@ -8,7 +8,10 @@ export class PostsService {
 
   constructor(private http:HttpClient) { }
 
-  getPosts() {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts');
-  }
-}
+  getPosts(id: number | undefined) {
+    console.log(id)
+    return id ?
+      this.http.get(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
+      : this.http.get('https://jsonplaceholder.typicode.com/posts');
+  };
+};

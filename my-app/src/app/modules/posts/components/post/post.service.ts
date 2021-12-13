@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Post} from "../../../../interfaces/post.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,7 @@ import {HttpClient} from "@angular/common/http";
 export class PostService {
   constructor(private http:HttpClient) { }
 
-  getPostById(id:any) {
-    console.log(id)
-    return this.http.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  getPostById(id: number | undefined) {
+    return this.http.get<Post>(`https://jsonplaceholder.typicode.com/posts/${id}`);
   }
 }

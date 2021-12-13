@@ -13,17 +13,17 @@ export class CommentsComponent implements OnInit {
   constructor(private CommentsService: CommentsService) { }
 
   ngOnInit(): void {
-    this.CommentsService.getComments().subscribe((res) => {
-      this.commentList = Object.values(res).map((item) => {
-        return {
-          postId: item.postId,
-          id: item.id,
-          name: item.name,
-          email: item.email,
-          body: item.body
-        }
-      })
-      console.log(this.commentList)
-    })
+    // this.CommentsService.getComments().subscribe((res) => {
+      // this.commentList = Object.values(res).map((item) => {
+      //   return {
+      //     postId: item.postId,
+      //     id: item.id,
+      //     name: item.name,
+      //     email: item.email,
+      //     body: item.body
+      //   }
+      // })
+      // console.log(this.commentList)
+    // })
   }
 }

@@ -1,7 +1,16 @@
 <div class="container">
-  <div *ngFor="let post of postsList" class="post" (click)="post.id">
-    <a href="http://localhost:4200/posts/post/{{post?.id}}">
-      <p class="postTitle">{{post?.title}}</p>
-    </a>
+  <div class="users">
+    <mat-form-field appearance="fill">
+      <mat-label>Select user</mat-label>
+      <mat-select (selectionChange)="onChange($event)" >
+        <mat-option>All users</mat-option>
+        <mat-option *ngFor="let state of usersList" [value]="state?.id">{{state?.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="posts">
+    <div *ngFor="let post of postsList" class="post" (click)="post.id ? openPost(post.id) : null">
+        <p class="postTitle">{{post?.title}}</p>
     </div>
+  </div>
 </div>

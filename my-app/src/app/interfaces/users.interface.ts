@@ -7,13 +7,13 @@ export interface User {
   phone: string,
   website: string,
   company: Company;
-}
+};
 
 export interface Company {
   name: string,
   catchPhrase: string,
   bs: string
-}
+};
 
 export interface Address {
   street: string,
@@ -21,10 +21,10 @@ export interface Address {
   city: string,
   zipcode: string,
   geo: Geo
-}
+};
 
 export interface Geo {
   lat: string,
   lng: string
-}
+};
 
