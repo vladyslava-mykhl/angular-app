@@ -11,6 +11,7 @@ import {PhotosService} from "./components/photos/photos.service";
 import {MatSelectModule} from "@angular/material/select";
 import {UsersService} from "../../shared/components/users/users.service";
 import { AlbumComponent } from './components/album/album.component';
+import {UserService} from "../../shared/components/user/user.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AlbumComponent } from './components/album/album.component';
     AlbumsService,
     AlbumService,
     PhotosService,
-    UsersService
+    UsersService,
+    UserService
   ]
 })
 export class AlbumsModule { }

@@ -22,6 +22,7 @@ export class AlbumsComponent implements OnInit {
   openAlbum(id:number) {
     window.location.href = `http://localhost:4200/albums/album/${id}`;
   };
+
   onChange(event:any){
     this.userId = event.value;
     this.onGetAlbums();

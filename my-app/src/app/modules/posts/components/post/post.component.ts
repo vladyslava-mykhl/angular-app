@@ -14,7 +14,7 @@ import {Comment} from "../../../../interfaces/comment.interface";
 
 export class PostComponent implements OnInit {
   post?: Post;
-  commentList: Comment[] = [];
+  commentList?: Comment[] = [];
   postId?: number;
   authorName ?: string;
 
@@ -29,16 +29,8 @@ export class PostComponent implements OnInit {
           this.authorName = Object.assign(res).name;
         });
         this.CommentsService.getCommentsById(this?.postId).subscribe((res) => {
-          this.commentList = Object.values(res).map((item) => {
-            return {
-              postId: item.postId,
-              id: item.id,
-              name: item.name,
-              email: item.email,
-              body: item.body
-            };
-          });
-       });
+          this.commentList = [...res];
+        });
      });
     });
   };
