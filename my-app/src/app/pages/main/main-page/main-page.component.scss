@@ -1,0 +1,10 @@
+.buttons {
+  display: flex;
+  margin: 20px 0 0 20px;
+  a {
+    margin: 10px;
+  }
+  .is-active {
+    box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.51) inset;
+  }
+}

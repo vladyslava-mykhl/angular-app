@@ -1,8 +1,7 @@
 <div class="container">
-  <h2>Main Page</h2>
   <div class="buttons">
-    <a mat-raised-button href="posts">Get Posts</a>
-    <a mat-raised-button href="albums">Get Albums</a>
+    <a mat-raised-button [routerLink]="['posts']" [routerLinkActive]="['is-active']" >Get Posts</a>
+    <a mat-raised-button [routerLink]="['albums']" [routerLinkActive]="['is-active']">Get Albums</a>
   </div>
 </div>
 

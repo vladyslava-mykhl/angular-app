@@ -1,6 +1,5 @@
 <div class="container">
   <div *ngFor="let photo of photoList" class="photo" (click)="photo.id">
-<!--    <img class="thumbnail" [src]="photo.thumbnailUrl"/>-->
     <p class="photoTitle">{{photo?.title}}</p>
     <img class="img" [src]="photo.url"/>
   </div>

@@ -7,14 +7,16 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
+import {RouterModule, Routes} from '@angular/router';
 import {MainPageComponent} from "./pages/main/main-page/main-page.component";
-
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainPageComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,

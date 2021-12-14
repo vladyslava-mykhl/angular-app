@@ -1,6 +1,6 @@
 <div class="container">
   <div class="users">
-    <mat-form-field appearance="fill">
+    <mat-form-field class="select" appearance="fill">
       <mat-label>Select user</mat-label>
       <mat-select (selectionChange)="onChange($event)" >
         <mat-option>All users</mat-option>
@@ -9,9 +9,9 @@
     </mat-form-field>
   </div>
   <div class="albums">
-    <div class="album" *ngFor="let album of albumList"  (click)="album.id ? openAlbum(album.id) : null">
+    <div class="album" *ngFor="let album of albumList; let i = index" (click)="album.id ? openAlbum(album.id) : null">
       <p class="albumTitle">{{album?.title}}</p>
-  <!--    <img [src]="photo?.thumbnailUrl" class="albumThumbnail"/>-->
+      <img *ngIf="photoList && (photoList.length === albumList.length)" [src] = "photoList[i][0]?.thumbnailUrl" class="albumThumbnail"/>
     </div>
   </div>
 </div>

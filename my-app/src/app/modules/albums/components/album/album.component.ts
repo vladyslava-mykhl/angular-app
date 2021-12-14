@@ -5,6 +5,7 @@ import {Album} from "../../../../interfaces/album.interface";
 import {PhotosService} from "../photos/photos.service";
 import {Photo} from "../../../../interfaces/photo.interface";
 import {UserService} from "../../../../shared/components/user/user.service";
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-album',
@@ -12,9 +13,35 @@ import {UserService} from "../../../../shared/components/user/user.service";
   styleUrls: ['./album.component.scss']
 })
 export class AlbumComponent implements OnInit {
-  albumId?: number;
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
+
+
+albumId?: number;
   album?: Album;
-  photos?: Photo[];
+  photos: Photo[] = [];
   authorName?: string;
 
   constructor(private activatedRoute: ActivatedRoute, private AlbumService: AlbumService, private PhotosService: PhotosService, private UserService: UserService) { }
@@ -30,6 +57,7 @@ export class AlbumComponent implements OnInit {
       });
       this.PhotosService.getPhotos(this.albumId).subscribe((res) => {
         this.photos = [...res]
+        console.log(this.photos)
       });
     });
   };

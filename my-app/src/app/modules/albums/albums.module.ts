@@ -11,6 +11,7 @@ import {PhotosService} from "./components/photos/photos.service";
 import {MatSelectModule} from "@angular/material/select";
 import {UsersService} from "../../shared/components/users/users.service";
 import { AlbumComponent } from './components/album/album.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import {UserService} from "../../shared/components/user/user.service";
 
 @NgModule({
@@ -25,6 +26,7 @@ import {UserService} from "../../shared/components/user/user.service";
     HttpClientModule,
     SharedModule,
     MatSelectModule,
+    CarouselModule
   ],
   providers: [
     AlbumsService,

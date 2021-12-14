@@ -1,7 +1,19 @@
-<div class="photos">
+<div *ngIf="photos" class="photos">
   <p>{{album?.title}}</p>
   <p>{{authorName}}</p>
-  <div *ngFor="let photo of photos" class="photo">
-    <img class="img" [src]="photo.url"/>
-  </div>
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let photo of photos">
+      <ng-template  carouselSlide>
+        <img [src]="photo?.url" [alt]="photo.title" [title]="photo.title">
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+  <div>Some tags after</div>
 </div>
+<!--<div class="album" *ngIf="photos.length !== 0">-->
+<!--  <p>{{authorName}}</p>-->
+<!--  <p>{{album?.title}}</p>-->
+<!--  <div *ngFor="let photo of photos" class="photos">-->
+<!--    <img [src]="photo?.url" [alt]="photo.title" [title]="photo.title">-->
+<!--  </div>-->
+<!--</div>-->

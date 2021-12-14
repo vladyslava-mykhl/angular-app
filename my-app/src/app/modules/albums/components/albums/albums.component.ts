@@ -12,8 +12,8 @@ import {User} from "../../../../interfaces/user.interface";
   styleUrls: ['./albums.component.scss']
 })
 export class AlbumsComponent implements OnInit {
- albumList?: Album[] = [];
- photoList?: Photo[] = [];
+ albumList: Album[] = [];
+ photoList: Photo[][] = [];
  usersList: User [] = [];
  userId?: number;
 
@@ -31,6 +31,10 @@ export class AlbumsComponent implements OnInit {
   onGetAlbums = () => {
     this.AlbumsService.getAlbums(this.userId).subscribe((res) => {
       this.albumList = [...res];
+      this.albumList.map(item =>
+        this.PhotosService.getPhotos(item.id).subscribe((res) => {
+        this.photoList.push([...res])
+      }));
     });
   };
 

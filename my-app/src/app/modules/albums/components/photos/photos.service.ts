@@ -10,7 +10,6 @@ export class PhotosService {
   constructor(private http:HttpClient) { }
 
   getPhotos(id: number | undefined) {
-    console.log(id)
     return id ?
       this.http.get<Photo[]>(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`)
       : this.http.get<Photo[]>('https://jsonplaceholder.typicode.com/photos');
