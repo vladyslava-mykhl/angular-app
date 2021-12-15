@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Album} from "../../../../interfaces/album.interface";
+import {Album} from "../../../interfaces/album.interface";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -11,5 +11,5 @@ export class AlbumService {
 
   getAlbumById(id: number | undefined) {
     return this.http.get<Album>(`https://jsonplaceholder.typicode.com/albums/${id}`);
-  }
-}
+  };
+};

@@ -1,3 +1,7 @@
+<div class="loader" *ngIf="loading; else posts">
+  <app-loader></app-loader>
+</div>
+<ng-template #posts>
 <div class="container">
   <div class="users">
     <mat-form-field appearance="fill">
@@ -13,4 +17,5 @@
         <p class="postTitle">{{post?.title}}</p>
     </div>
   </div>
-</div>
+  </div>
+</ng-template>

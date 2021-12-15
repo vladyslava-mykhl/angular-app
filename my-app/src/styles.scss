@@ -1,4 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(../node_modules/font-awesome/css/font-awesome.css);
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.ngx-gallery {
+  width: 90% !important;
+}
+.ngx-gallery-image {
+  width: 40% !important;
+  top:50% !important;
+  left:50% !important;
+  transform:translate(-50%, -50%) !important;
+}
+.ngx-gallery-thumbnail, .ngx-gallery-image {
+  border: none !important;
+}

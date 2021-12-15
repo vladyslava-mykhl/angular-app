@@ -1,7 +1,12 @@
-.album {
+.albums {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 30px;
+  .info {
+    text-align: center;
+    margin-bottom: 40px;
+    width: 30%;
+  }
 }

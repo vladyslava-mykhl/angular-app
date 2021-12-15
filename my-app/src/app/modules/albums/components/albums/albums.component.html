@@ -1,17 +1,22 @@
+<div class="loader" *ngIf="loading; else albums">
+  <app-loader></app-loader>
+</div>
+<ng-template #albums>
 <div class="container">
-  <div class="users">
-    <mat-form-field class="select" appearance="fill">
-      <mat-label>Select user</mat-label>
-      <mat-select (selectionChange)="onChange($event)" >
-        <mat-option>All users</mat-option>
-        <mat-option *ngFor="let state of usersList" [value]="state?.id">{{state?.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="albums">
-    <div class="album" *ngFor="let album of albumList; let i = index" (click)="album.id ? openAlbum(album.id) : null">
-      <p class="albumTitle">{{album?.title}}</p>
-      <img *ngIf="photoList && (photoList.length === albumList.length)" [src] = "photoList[i][0]?.thumbnailUrl" class="albumThumbnail"/>
+    <div class="users">
+      <mat-form-field class="select" appearance="fill">
+        <mat-label>Select user</mat-label>
+        <mat-select (selectionChange)="onChange($event)" >
+          <mat-option>All users</mat-option>
+          <mat-option *ngFor="let state of usersList" [value]="state?.id">{{state?.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="albums">
+      <div class="album" *ngFor="let album of albumList; let i = index" (click)="album.id ? openAlbum(album.id) : null">
+        <p class="albumTitle">{{album?.title}}</p>
+        <img [src] = "photoList[i][0]?.thumbnailUrl" class="albumThumbnail"/>
+      </div>
     </div>
   </div>
-</div>
+</ng-template>

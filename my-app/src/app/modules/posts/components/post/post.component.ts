@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Post} from "../../../../interfaces/post.interface";
 import {ActivatedRoute, Params} from '@angular/router';
-import {PostService} from './post.service';
-import {UserService} from '../../../../shared/components/user/user.service';
-import {CommentsService} from "../comments/comments.service";
+import {PostService} from '../../services/post.service';
+import {UserService} from '../../../shared/services/user.service'
+import {CommentsService} from "../../services/comments.service";
 import {Comment} from "../../../../interfaces/comment.interface";
 
 @Component({
@@ -17,6 +17,7 @@ export class PostComponent implements OnInit {
   commentList?: Comment[] = [];
   postId?: number;
   authorName ?: string;
+  loading: boolean = true;
 
   constructor(private activatedRoute: ActivatedRoute, private PostService: PostService, private UserService: UserService, private CommentsService: CommentsService) {}
 
@@ -27,9 +28,11 @@ export class PostComponent implements OnInit {
         this.post = {...res};
         this.UserService.getUserById(this.post?.userId).subscribe((res) => {
           this.authorName = Object.assign(res).name;
+          this.loading = false
         });
         this.CommentsService.getCommentsById(this?.postId).subscribe((res) => {
           this.commentList = [...res];
+          this.loading = false
         });
      });
     });

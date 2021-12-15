@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
-import {AlbumService} from "./album.service";
+import {AlbumService} from "../../services/album.service";
 import {Album} from "../../../../interfaces/album.interface";
-import {PhotosService} from "../photos/photos.service";
+import {PhotosService} from "../../services/photos.service";
 import {Photo} from "../../../../interfaces/photo.interface";
-import {UserService} from "../../../../shared/components/user/user.service";
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
+import {NgxGalleryImage} from '@kolkov/ngx-gallery';
+import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+import {UserService} from '../../../shared/services/user.service'
 
 @Component({
   selector: 'app-album',
@@ -13,36 +15,14 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./album.component.scss']
 })
 export class AlbumComponent implements OnInit {
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
-    },
-    nav: true
-  }
-
-
-albumId?: number;
+  albumId?: number;
   album?: Album;
   photos: Photo[] = [];
   authorName?: string;
+  galleryOptions: NgxGalleryOptions [] = [] ;
+  galleryImages: NgxGalleryImage[] = [];
+  loading: boolean = true;
+  error: any = null;
 
   constructor(private activatedRoute: ActivatedRoute, private AlbumService: AlbumService, private PhotosService: PhotosService, private UserService: UserService) { }
 
@@ -57,8 +37,47 @@ albumId?: number;
       });
       this.PhotosService.getPhotos(this.albumId).subscribe((res) => {
         this.photos = [...res]
-        console.log(this.photos)
+        res.map((item) => {
+          let obj = {
+            big: item.url,
+            medium: item.url,
+            small: item.thumbnailUrl
+          }
+          this.galleryImages.push(obj);
+        })
+          this.galleryOptions = [
+          {
+            imageArrows : true,
+            width: '500px',
+            height: '600px',
+            thumbnailsColumns: 8,
+            imageAnimation: NgxGalleryAnimation.Slide
+          },
+          {
+            breakpoint: 900,
+            width: '400px',
+            height: '400px',
+            thumbnailsColumns: 6,
+          },
+          {
+            breakpoint: 700,
+            width: '300px',
+            height: '300px',
+            thumbnailsColumns: 5,
+          },
+          {
+            breakpoint: 400,
+            width: '250px',
+            height: '200px',
+            thumbnailsColumns: 3,
+          },
+          {
+            breakpoint: 400,
+            preview: false
+          }
+        ];
+        this.loading = false;
       });
-    });
+    }, err => this.error = err);
   };
 };

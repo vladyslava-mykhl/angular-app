@@ -1,11 +1,16 @@
-<div class="container">
-  <div class="post">
-    <p class="authorName">{{authorName}}</p>
-    <p class="postTitle">{{post?.title}}</p>
-    <p class="postBody">{{post?.body}}</p>
-  </div>
-  <div *ngFor="let comment of commentList" class="comments">
-    <p class="commentName">{{comment?.name}}</p>
-    <p class="commentBody">{{comment?.body}}</p>
-  </div>
+<div class="loader" *ngIf="loading; else posts">
+  <app-loader></app-loader>
 </div>
+<ng-template #posts>
+  <div class="container">
+    <div class="post">
+      <p class="authorName">{{authorName}}</p>
+      <p class="postTitle">{{post?.title}}</p>
+      <p class="postBody">{{post?.body}}</p>
+    </div>
+    <div *ngFor="let comment of commentList" class="comments">
+      <p class="commentName">{{comment?.name}}</p>
+      <p class="commentBody">{{comment?.body}}</p>
+    </div>
+  </div>
+</ng-template>

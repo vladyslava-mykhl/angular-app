@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AlbumsService } from './albums.service';
+import { AlbumsService } from '../../services/albums.service';
 import { Album } from "../../../../interfaces/album.interface";
 import { Photo } from '../../../../interfaces/photo.interface';
-import { PhotosService } from  '../photos/photos.service';
-import {UsersService} from '../../../../shared/components/users/users.service';
+import { PhotosService } from '../../services/photos.service';
+import {UsersService} from '../../../shared/services/users.service'
 import {User} from "../../../../interfaces/user.interface";
 
 @Component({
@@ -11,16 +11,18 @@ import {User} from "../../../../interfaces/user.interface";
   templateUrl: './albums.component.html',
   styleUrls: ['./albums.component.scss']
 })
+
 export class AlbumsComponent implements OnInit {
  albumList: Album[] = [];
  photoList: Photo[][] = [];
  usersList: User [] = [];
  userId?: number;
+ loading: boolean = true;
 
   constructor(private AlbumsService: AlbumsService, private PhotosService: PhotosService, private UsersService: UsersService) { }
 
   openAlbum(id:number) {
-    window.location.href = `http://localhost:4200/albums/album/${id}`;
+    window.location.href = `http://localhost:4200/albums/${id}`;
   };
 
   onChange(event:any){
@@ -35,6 +37,7 @@ export class AlbumsComponent implements OnInit {
         this.PhotosService.getPhotos(item.id).subscribe((res) => {
         this.photoList.push([...res])
       }));
+      this.loading = false;
     });
   };
 
@@ -42,6 +45,7 @@ export class AlbumsComponent implements OnInit {
     this.onGetAlbums();
     this.UsersService.getUsers().subscribe((res) => {
       this.usersList = [...res];
+      this.loading = false;
     });
   };
 };

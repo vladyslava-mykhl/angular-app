@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PostsService} from "./posts.service";
-import {UsersService} from '../../../../shared/components/users/users.service';
+import {PostsService} from "../../services/posts.service";
+import {UsersService} from '../../../shared/services/users.service'
 import {Post} from "../../../../interfaces/post.interface";
 import {User} from "../../../../interfaces/user.interface";
 
@@ -11,28 +11,34 @@ import {User} from "../../../../interfaces/user.interface";
 })
 
 export class PostsComponent implements OnInit {
-  postsList: Post[] = [];
+  postsList: Post [] = [];
   usersList: User [] = [];
   userId?: number;
+  loading: boolean = true;
 
   constructor(private PostsService: PostsService, private UsersService: UsersService) {}
 
   openPost(id:number) {
-    window.location.href = `http://localhost:4200/posts/post/${id}`;
+    window.location.href = `http://localhost:4200/posts/${id}`;
   };
+
   onChange(event:any){
     this.userId = event.value;
     this.onGetPosts();
   };
+
   onGetPosts = () => {
     this.PostsService.getPosts(this.userId).subscribe((res) => {
       this.postsList = [...res];
+      this.loading = false;
     });
   };
+
   ngOnInit(): void {
     this.onGetPosts();
     this.UsersService.getUsers().subscribe((res) => {
       this.usersList = [...res];
+      this.loading = false;
     });
   };
 };
